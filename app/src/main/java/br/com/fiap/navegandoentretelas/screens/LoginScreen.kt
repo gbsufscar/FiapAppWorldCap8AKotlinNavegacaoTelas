@@ -2,7 +2,7 @@ package br.com.fiap.navegandoentretelas.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -12,16 +12,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 
 @Composable
 fun LoginScreen(){
     Box(
         modifier = Modifier
-        .fillMaxWidth()
-        .background(Color(0xFFED145B))
-        .padding(32.dp)
+            .fillMaxSize()
+            .background(Color(0xFFED145B))
+            .padding(32.dp)
     ){
         Text(
             text = "LOGIN",
@@ -30,7 +32,7 @@ fun LoginScreen(){
             color = Color.White
         )
         Button(
-            onClick = {/* TODO */ },
+            onClick = { navController.navigate("menu") },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.align(
                 Alignment.Center
@@ -43,4 +45,10 @@ fun LoginScreen(){
             )
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun LoginScreenPreview(){
+    LoginScreen()
 }
