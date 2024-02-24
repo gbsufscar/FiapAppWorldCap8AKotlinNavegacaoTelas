@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.fiap.navegandoentretelas.screens.LoginScreen
 import br.com.fiap.navegandoentretelas.ui.theme.NavegandoEntreTelasTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    /* TODO */
+                   LoginScreen()
                 }
             }
         }
@@ -32,7 +33,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     /* TODO */
-    )
 }
 
 @Preview(showBackground = true)
