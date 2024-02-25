@@ -30,15 +30,16 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Instância a função rememberNavController()
-                   val navController = rememberNavController()
+                   val navController = rememberNavController() // variável da classe NavHostController
 
                     // Função NavHost, responsável por gerenciar as rotas de telas
                     NavHost(
                         navController = navController,
-                        startDestination = "login" // Tela que será aberta na primeira vez
+                        startDestination = "login" // Tela que será aberta na primeira vez da aplicação (default)
                     ){
                         // Destinos navegáveis
-                        composable(route = "login"){ LoginScreen() } // login: identificador único para cada destino
+                        composable(route = "login"){ LoginScreen(navController = navController) }
+                            // login: identificador único para cada destino. navController: parâmetro da classe NavController
                         composable(route = "menu"){ MenuScreen() }
                         composable(route = "pedidos"){ PedidosScreen() }
                         composable(route = "perfil"){ PerfilScreen() }
