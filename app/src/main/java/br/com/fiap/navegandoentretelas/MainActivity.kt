@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,11 +37,11 @@ class MainActivity : ComponentActivity() {
                         startDestination = "login" // Tela que será aberta na primeira vez da aplicação (default)
                     ){
                         // Destinos navegáveis
+                        // -- route: identificador único para cada destino. navController: parâmetro da classe NavController
                         composable(route = "login"){ LoginScreen(navController = navController) }
-                            // login: identificador único para cada destino. navController: parâmetro da classe NavController
-                        composable(route = "menu"){ MenuScreen() }
-                        composable(route = "pedidos"){ PedidosScreen() }
-                        composable(route = "perfil"){ PerfilScreen() }
+                        composable(route = "menu"){ MenuScreen(navController = navController) }
+                        composable(route = "pedidos"){ PedidosScreen(navController = navController) }
+                        composable(route = "perfil"){ PerfilScreen(navController = navController) }
                     }
                 }
             }

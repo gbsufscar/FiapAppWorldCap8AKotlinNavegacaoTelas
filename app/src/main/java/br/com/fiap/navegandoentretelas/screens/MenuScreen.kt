@@ -20,9 +20,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+
 
 @Composable
-fun MenuScreen() {
+fun MenuScreen(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color(0xFF2C4EC7))
@@ -41,7 +44,7 @@ fun MenuScreen() {
                 .align(Alignment.Center)
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("perfil") }, // navegação para a tela de perfil
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -49,7 +52,7 @@ fun MenuScreen() {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("pedidos") }, // navegação para a tela de pedidos
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -57,7 +60,7 @@ fun MenuScreen() {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("login") }, // navegação para a tela de login
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -70,5 +73,5 @@ fun MenuScreen() {
 @Preview(showSystemUi = true)
 @Composable
 fun MenuScreenPreview(){
-    MenuScreen()
+    MenuScreen(navController = rememberNavController())
 }
