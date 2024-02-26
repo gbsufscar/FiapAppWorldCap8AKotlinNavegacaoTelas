@@ -19,7 +19,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun PedidosScreen(navController: NavHostController) {
+fun PedidosScreen(
+    navController: NavHostController,
+    numero: String // parâmetro número que será recebido quando o botão pedidos da tela de menu for clicado
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -27,7 +30,7 @@ fun PedidosScreen(navController: NavHostController) {
             .padding(32.dp)
     ) {
         Text(
-            text = "PEDIDOS",
+            text = "PEDIDOS - $numero", // exibição do número recebido na tela de pedidos
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
@@ -44,8 +47,11 @@ fun PedidosScreen(navController: NavHostController) {
     }
 }
 
+/*
 @Preview(showSystemUi = true)
 @Composable
 fun PedidosScreenPreview() {
     PedidosScreen(navController = rememberNavController())
 }
+
+ */

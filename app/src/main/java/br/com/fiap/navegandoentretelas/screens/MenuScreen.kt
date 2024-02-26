@@ -56,7 +56,7 @@ fun MenuScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                    navController.navigate("pedidos")  // navegação para a tela de pedidos
+                    navController.navigate("pedidos?numero=5656")  // navegação para a tela de pedidos passando o argumento número 5656
                 },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)

@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import br.com.fiap.navegandoentretelas.screens.LoginScreen
 import br.com.fiap.navegandoentretelas.screens.MenuScreen
 import br.com.fiap.navegandoentretelas.screens.PedidosScreen
@@ -39,23 +40,49 @@ class MainActivity : ComponentActivity() {
                     ) {
                         // Destinos navegáveis
                         // -- route: identificador único para cada destino. navController: parâmetro da classe NavController
+
+                        // Rota para a tela de login
                         composable(route = "login") {
                             LoginScreen(navController = navController)
                         }
+
+                        // Rota para a tela de menu
                         composable(route = "menu") {
                             MenuScreen(navController = navController)
                         }
-                        composable(route = "pedidos") {
-                            PedidosScreen(navController = navController)
+
+                        // Rota para a tela de pedidos
+                        /*
+                        Argumentos opcionais. Exemplo: pedidos?numero=5656. Não passando valor para o número, será exibido "sem valor".
+                        Argumento número recebido da tela de menu quando o botão pedidos for clicado.
+                        listOf -> lista de argumentos. Um deles é o número do pedido que será recebido.
+                         */
+                        composable(route = "pedidos?numero={numero}",
+                            arguments = listOf(navArgument(name = "numero") {
+                                defaultValue = "sem valor" // valor padrão
+                            }
+                            )
+                        ) {
+                            PedidosScreen(
+                                navController = navController,
+                                numero = it.arguments?.getString("numero")!!
+                            )
                         }
+
+                        // Rota para a tela de perfil
                         composable(route = "perfil/{nome}") {
                             // variável nome que será recebido quando o botão perfil da tela de menu for clicado
-                            var nome: String? = it.arguments?.getString("nome", "") // it -> argumento recebido na tela de perfil
+                            var nome: String? =
+                                it.arguments?.getString( // it -> argumento recebido na tela de menu
+                                    "nome",
+                                    ""
+                                )
 
                             // Chamada da função PerfilScreen para a tela de perfil
                             PerfilScreen(
                                 navController = navController,
-                                nome = nome!!) // !! -> operador de não nulo (double bang)
+                                nome = nome!!
+                            ) // !! -> operador de não nulo (double bang)
                         }
                     }
                 }
