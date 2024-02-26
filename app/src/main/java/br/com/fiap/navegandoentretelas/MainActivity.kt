@@ -6,9 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -70,19 +69,25 @@ class MainActivity : ComponentActivity() {
                         }
 
                         // Rota para a tela de perfil
-                        composable(route = "perfil/{nome}") {
-                            // variável nome que será recebido quando o botão perfil da tela de menu for clicado
-                            var nome: String? =
-                                it.arguments?.getString( // it -> argumento recebido na tela de menu
-                                    "nome",
-                                    ""
-                                )
-
+                        /*
+                        Sobre os Argumentos, leia-se: "Quem quiser acionar a rota
+                        deverá passar os argumentos na chamada para poder ser recuperado e utilizados".
+                         */
+                        composable(
+                            route = "perfil/{nome}/{idade}",
+                            arguments = listOf(
+                                navArgument("nome") {
+                                    type = NavType.StringType
+                                },
+                                navArgument("idade") {
+                                    type = NavType.IntType
+                                }
+                            )
+                        ) {
+                            var nome: String? = it.arguments?.getString("nome", "")
+                            var idade: Int? = it.arguments?.getInt("idade", 0)
                             // Chamada da função PerfilScreen para a tela de perfil
-                            PerfilScreen(
-                                navController = navController,
-                                nome = nome!!
-                            ) // !! -> operador de não nulo (double bang)
+                            PerfilScreen(navController, nome!!, idade!!) // !! -> operador de não nulo (double bang)
                         }
                     }
                 }

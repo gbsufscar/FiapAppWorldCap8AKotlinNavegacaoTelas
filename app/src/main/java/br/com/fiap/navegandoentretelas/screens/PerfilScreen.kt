@@ -12,17 +12,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 
 
 @Composable
 fun PerfilScreen(
     navController: NavHostController,
-    nome: String // parâmetro nome que será recebido quando o botão perfil da tela de menu for clicado
+    nome: String, // parâmetro nome que será recebido quando o botão perfil da tela de menu for clicado
+    idade: Int
 ) {
     Box(
         modifier = Modifier
@@ -31,7 +30,7 @@ fun PerfilScreen(
             .padding(32.dp)
     ) {
         Text(
-            text = "PERFIL - $nome", // exibição do nome recebido na tela de perfil
+            text = "PERFIL - $nome, $idade anos.", // exibição do nome recebido na tela de perfil
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White

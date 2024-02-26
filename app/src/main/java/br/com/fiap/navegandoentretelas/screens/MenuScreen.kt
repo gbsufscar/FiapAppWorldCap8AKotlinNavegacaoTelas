@@ -46,7 +46,7 @@ fun MenuScreen(navController: NavHostController) {
         ) {
             Button(
                 onClick = {
-                    navController.navigate("perfil/Maria") // navegação para a tela de perfil, passando o argumento nome Maria
+                    navController.navigate("perfil/Maria/32") // navegação para a tela de perfil, passando o argumento nome Maria
                 },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
