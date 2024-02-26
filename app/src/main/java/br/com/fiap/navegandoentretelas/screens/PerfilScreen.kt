@@ -20,20 +20,26 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun PerfilScreen(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFF329F6B))
-        .padding(32.dp)
-    ){
+fun PerfilScreen(
+    navController: NavHostController,
+    nome: String // parâmetro nome que será recebido quando o botão perfil da tela de menu for clicado
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF329F6B))
+            .padding(32.dp)
+    ) {
         Text(
-            text = "PERFIL",
+            text = "PERFIL - $nome", // exibição do nome recebido na tela de perfil
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
         )
         Button(
-            onClick = { navController.navigate("menu") },
+            onClick = {
+                navController.navigate("menu") // navegação para a tela de menu
+            },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.align(Alignment.Center)
         ) {
@@ -42,8 +48,11 @@ fun PerfilScreen(navController: NavHostController) {
     }
 }
 
+/*
 @Preview
 @Composable
-fun PerfilScrenPreview(){
-    PerfilScreen(navController = rememberNavController())
+fun PerfilScrenPreview() {
+    PerfilScreen(navController = rememberNavController(), )
 }
+
+ */

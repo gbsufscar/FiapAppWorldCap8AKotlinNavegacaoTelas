@@ -26,11 +26,12 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun MenuScreen(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFF2C4EC7))
-        .padding(32.dp)
-    ){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF2C4EC7))
+            .padding(32.dp)
+    ) {
         Text(
             text = "MENU",
             fontSize = 24.sp,
@@ -44,7 +45,9 @@ fun MenuScreen(navController: NavHostController) {
                 .align(Alignment.Center)
         ) {
             Button(
-                onClick = { navController.navigate("perfil") }, // navegação para a tela de perfil
+                onClick = {
+                    navController.navigate("perfil/Maria") // navegação para a tela de perfil, passando o argumento nome Maria
+                },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -52,7 +55,9 @@ fun MenuScreen(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { navController.navigate("pedidos") }, // navegação para a tela de pedidos
+                onClick = {
+                    navController.navigate("pedidos")  // navegação para a tela de pedidos
+                },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -60,7 +65,9 @@ fun MenuScreen(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { navController.navigate("login") }, // navegação para a tela de login
+                onClick = {
+                    navController.navigate("login") // navegação para a tela de login
+                },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -72,6 +79,6 @@ fun MenuScreen(navController: NavHostController) {
 
 @Preview(showSystemUi = true)
 @Composable
-fun MenuScreenPreview(){
+fun MenuScreenPreview() {
     MenuScreen(navController = rememberNavController())
 }

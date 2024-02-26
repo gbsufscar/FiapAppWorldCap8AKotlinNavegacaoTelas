@@ -20,11 +20,12 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun PedidosScreen(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFFAFA9A9))
-        .padding(32.dp)
-    ){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFAFA9A9))
+            .padding(32.dp)
+    ) {
         Text(
             text = "PEDIDOS",
             fontSize = 24.sp,
@@ -32,7 +33,9 @@ fun PedidosScreen(navController: NavHostController) {
             color = Color.White
         )
         Button(
-            onClick = { navController.navigate("menu") },
+            onClick = {
+                navController.navigate("menu")
+            },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.align(Alignment.Center)
         ) {
@@ -43,6 +46,6 @@ fun PedidosScreen(navController: NavHostController) {
 
 @Preview(showSystemUi = true)
 @Composable
-fun PedidosScreenPreview(){
+fun PedidosScreenPreview() {
     PedidosScreen(navController = rememberNavController())
 }

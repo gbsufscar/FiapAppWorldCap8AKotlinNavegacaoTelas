@@ -28,20 +28,35 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Instância a função rememberNavController()
-                   val navController = rememberNavController() // variável da classe NavHostController
+                    // Instância a função rememberNavController(). Guarda o histórico de navegação.
+                    val navController =
+                        rememberNavController() // variável da classe NavHostController (val -> constante)
 
                     // Função NavHost, responsável por gerenciar as rotas de telas
                     NavHost(
-                        navController = navController,
+                        navController = navController, // parâmetro da classe NavHostController. Guarda o histórico de navegação.
                         startDestination = "login" // Tela que será aberta na primeira vez da aplicação (default)
-                    ){
+                    ) {
                         // Destinos navegáveis
                         // -- route: identificador único para cada destino. navController: parâmetro da classe NavController
-                        composable(route = "login"){ LoginScreen(navController = navController) }
-                        composable(route = "menu"){ MenuScreen(navController = navController) }
-                        composable(route = "pedidos"){ PedidosScreen(navController = navController) }
-                        composable(route = "perfil"){ PerfilScreen(navController = navController) }
+                        composable(route = "login") {
+                            LoginScreen(navController = navController)
+                        }
+                        composable(route = "menu") {
+                            MenuScreen(navController = navController)
+                        }
+                        composable(route = "pedidos") {
+                            PedidosScreen(navController = navController)
+                        }
+                        composable(route = "perfil/{nome}") {
+                            // variável nome que será recebido quando o botão perfil da tela de menu for clicado
+                            var nome: String? = it.arguments?.getString("nome", "") // it -> argumento recebido na tela de perfil
+
+                            // Chamada da função PerfilScreen para a tela de perfil
+                            PerfilScreen(
+                                navController = navController,
+                                nome = nome!!) // !! -> operador de não nulo (double bang)
+                        }
                     }
                 }
             }
@@ -49,7 +64,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -57,3 +72,5 @@ fun GreetingPreview() {
         /* TODO */
     }
 }
+
+ */

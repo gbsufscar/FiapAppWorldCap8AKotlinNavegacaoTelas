@@ -20,13 +20,13 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun LoginScreen(navController: NavController){
+fun LoginScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFED145B))
             .padding(32.dp)
-    ){
+    ) {
         Text(
             text = "LOGIN",
             fontSize = 24.sp,
@@ -34,7 +34,9 @@ fun LoginScreen(navController: NavController){
             color = Color.White
         )
         Button(
-            onClick = { navController.navigate("menu") },
+            onClick = {
+                navController.navigate("menu")
+            },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.align(
                 Alignment.Center
@@ -52,6 +54,6 @@ fun LoginScreen(navController: NavController){
 
 @Preview(showSystemUi = true)
 @Composable
-fun LoginScreenPreview(){
+fun LoginScreenPreview() {
     LoginScreen(rememberNavController())
 }
