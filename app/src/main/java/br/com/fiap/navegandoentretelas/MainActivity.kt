@@ -3,22 +3,25 @@ package br.com.fiap.navegandoentretelas
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.fiap.navegandoentretelas.screens.LoginScreen
 import br.com.fiap.navegandoentretelas.screens.MenuScreen
 import br.com.fiap.navegandoentretelas.screens.PedidosScreen
 import br.com.fiap.navegandoentretelas.screens.PerfilScreen
 import br.com.fiap.navegandoentretelas.ui.theme.NavegandoEntreTelasTheme
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.navigation.animation.composable
+
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -29,13 +32,24 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Instância a função rememberNavController(). Guarda o histórico de navegação.
-                    val navController =
-                        rememberNavController() // variável da classe NavHostController (val -> constante)
+                    val navController = rememberAnimatedNavController()
 
-                    // Função NavHost, responsável por gerenciar as rotas de telas
-                    NavHost(
+                    // Função AnimatedNavHost, responsável por gerenciar as rotas e as transições de telas
+                    AnimatedNavHost(
                         navController = navController, // parâmetro da classe NavHostController. Guarda o histórico de navegação.
-                        startDestination = "login" // Tela que será aberta na primeira vez da aplicação (default)
+                        startDestination = "login", // Tela que será aberta na primeira vez da aplicação (default)
+                        exitTrasition = {
+                            slideOutOfContainer(
+                                towards = AnimatedContentScope.SlideDirection.End,
+                                animationSpec = tween(1000)
+                            ) + fadeOut(animationSpec = tween(1000))
+                        },
+                        enterTransition = {
+                            slideIntoContainer(
+                                towards = AnimatedContentScope.SlideDirection.Start,
+                                animationSpec = tween(3000)
+                            )
+                        }
                     ) {
                         // Destinos navegáveis
                         // -- route: identificador único para cada destino. navController: parâmetro da classe NavController
@@ -87,14 +101,18 @@ class MainActivity : ComponentActivity() {
                             var nome: String? = it.arguments?.getString("nome", "")
                             var idade: Int? = it.arguments?.getInt("idade", 0)
                             // Chamada da função PerfilScreen para a tela de perfil
-                            PerfilScreen(navController, nome!!, idade!!) // !! -> operador de não nulo (double bang)
+                            PerfilScreen(
+                                navController,
+                                nome!!,
+                                idade!!
+                            ) // !! -> operador de não nulo (double bang)
                         }
                     }
+
                 }
             }
         }
     }
-}
 
 /*
 @Preview(showBackground = true)
